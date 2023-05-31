@@ -12,17 +12,31 @@ This sample client demonstrates how to submit a job using api keys and pgp encry
 
     npm install
 
-copy `sample.env` to `.env` and populate the keys with the above credentials
-
-As of writing, this sample was tested with node v14.21.1 and npm v9.2.0
+copy `.env.example` to `.env` and populate the keys with your credentials
 
 ## Submit a job
 
     node job-submit.js test_cards.csv
 
-Encrypts a test card request file and uploads it to Pagos Loon. The format is defined in `test_cards.csv`.
+Encrypts a test card request file and uploads it to Pagos Loon. See [test_cards.csv](test_cards.csv) for an example.
 
-A jobId is returned, which can be used for the next two calls.
+A jobId is returned, which can be used for status and download calls.
+
+### Sample request file format
+
+The request file should be a csv with the header
+
+`network,account_number,expiry_year,expiry_month,submerchant_account_id`
+
+and at least one row of data with the following values
+
+field | values
+------|------
+network | visa,mastercard,discover,american express
+account_number | 15-16 digits
+expiry_year | YYYY
+expiry_month | MM
+submerchant_account_id | optional value, alphanumeric
 
 ## Get Job Status
 
