@@ -11,32 +11,31 @@ import { decryptPgp }  from './lib/encryption.js';
  * @returns {string} decrypted job response
 */
 async function downloadJobResponse(config, jobId ) {
-    let headers = createAuthHeaders(config.clientKey, config.privateKey, "", "text/plain")
+    let headers = createAuthHeaders(config.clientKey, config.privateKey, "", "text/plain");
     const response = await fetch(`${config.apiHost}/loon/inquiries/jobs/${jobId}/download`, {
         headers,
         method: 'GET'
-    })
+    });
 
     if(response.status == "200") {
-        const responseText = await response.text()
-        const decrypted = await decryptPgp(responseText, config.privatePgpKey)
-        return decrypted
+        const responseText = await response.text();
+        const decrypted = await decryptPgp(responseText, config.privatePgpKey, config.privatePgpKeyPassphrase);
+        return decrypted;
     } 
 }
 
 (async () => {
     if(process.argv.length != 3) {
-        console.log("provide a job id")
+        console.log("provide a job id");
         process.exit(1);
     }
     const jobId = process.argv[2]
 
-    let download = await downloadJobResponse(loonConfig, jobId)
+    let download = await downloadJobResponse(loonConfig, jobId);
 
     if(download) {
-        console.log(download)
+        console.log(download);
     } else {
-        console.log("job not found")
+        console.log("job not found");
     }
-    
 })();
