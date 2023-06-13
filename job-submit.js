@@ -12,7 +12,7 @@ import { encryptPgp } from './lib/encryption.js';
  * @returns {number} jobId
  */
 async function submitJob(config, cards) {
-    const body = await encryptPgp(cards, config.pagosPublicPgpKey)
+    const body = await encryptPgp(cards, config.pagosPublicPgpKey);
    
     let headers = createAuthHeaders(config.clientKey, config.privateKey, body, "text/plain");
 
@@ -20,31 +20,31 @@ async function submitJob(config, cards) {
         headers,
         method: 'POST',
         body: body
-    })
+    });
     
     const responseJson = await response.json();
 
     if(response.status == "200") {
-        return responseJson.jobId 
+        return responseJson.jobId;
     }
     else {
-        console.log("job submit failed {0} {1}", response.status, responseJson)
+        console.log("job submit failed {0} {1}", response.status, responseJson);
     }
 }
 
 function getCardsAsCsv(fileName)  {
-   return readFileSync(fileName).toString()
+   return readFileSync(fileName).toString();
 }
 
 (async () => {
    if(process.argv.length != 3) {
-      console.log("provide a csv file name with cards")
-      process.exit(1)
+      console.log("provide a csv file name with cards");
+      process.exit(1);
    }
 
-   const fileName = process.argv[2]
+   const fileName = process.argv[2];
 
-   let cards = getCardsAsCsv(fileName)
-   let jobId = await submitJob(loonConfig, cards)
-   console.log("jobId submitted", jobId)
-})()
+   let cards = getCardsAsCsv(fileName);
+   let jobId = await submitJob(loonConfig, cards);
+   console.log("jobId submitted", jobId);
+})();
