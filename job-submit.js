@@ -3,6 +3,7 @@ import { readFileSync } from 'fs';
 import { createAuthHeaders }  from './lib/auth.js';
 import { loonConfig }  from './lib/config.js';
 import { encryptPgp } from './lib/encryption.js';
+import { exit } from "process";
 
 /**
  * Encrypt and upload a card file
@@ -15,7 +16,7 @@ async function submitJob(config, cards) {
     const body = await encryptPgp(cards, config.pagosPublicPgpKey);
    
     let headers = createAuthHeaders(config.clientKey, config.privateKey, body, "text/plain");
-
+    
     const response = await fetch(`${config.apiHost}/loon/inquiries/jobs`, {
         headers,
         method: 'POST',
