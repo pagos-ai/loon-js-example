@@ -3,7 +3,6 @@ import { readFileSync } from 'fs';
 import { createAuthHeaders }  from './lib/auth.js';
 import { loonConfig }  from './lib/config.js';
 import { encryptPgp } from './lib/encryption.js';
-import { exit } from "process";
 
 /**
  * Encrypt and upload a card file
