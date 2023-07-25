@@ -15,7 +15,7 @@ async function submitJob(config, cards) {
     const body = await encryptPgp(cards, config.pagosPublicPgpKey);
    
     let headers = createAuthHeaders(config.clientKey, config.privateKey, body, "text/plain");
-
+    
     const response = await fetch(`${config.apiHost}/loon/inquiries/jobs`, {
         headers,
         method: 'POST',

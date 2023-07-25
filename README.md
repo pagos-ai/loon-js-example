@@ -14,6 +14,14 @@ This sample client demonstrates how to submit a job using api keys and pgp encry
 
 copy `.env.example` to `.env` and populate the keys with your credentials
 
+## Environments
+
+Environment | API_HOST | Response cadence
+------|------|------
+sandbox | https://services.sandbox.pagosapi.com | Near real time (simulated responses)
+prod | https://services.prod.pagosapi.com | Overnight
+
+
 ## Submit a job
 
     node job-submit.js test_cards.csv
@@ -26,7 +34,7 @@ A jobId is returned, which can be used for status and download calls.
 
 The request file should be a csv with the header
 
-`network,account_number,expiry_year,expiry_month,submerchant_account_id`
+`network,account_number,expiry_year,expiry_month,sub_merchant_id`
 
 and at least one row of data with the following values
 
@@ -36,7 +44,7 @@ network | visa,mastercard,discover,american express
 account_number | 15-16 digits
 expiry_year | YYYY
 expiry_month | MM
-submerchant_account_id | optional value, alphanumeric
+sub_merchant_id | optional value, alphanumeric
 
 ## Get Job Status
 
@@ -55,8 +63,10 @@ Use the job-id returned from submit-job
 ### Sample response file format
 
 ```csv
-account_number,expiry_month,expiry_year,new_account_number,new_expiry_month,new_expiry_year,response_indicator,reason_identifier,network
-4327390068355737,12,2025,4327390068355714,12,2025,A,,visa
-4680056031099386,05,2021,4680056031099386,12,2021,O,,visa
+account_number,expiry_month,expiry_year,new_account_number,new_expiry_month,new_expiry_year,response_code,error_code,network,sub_merchant_id
+4025000000001002,12,2023,4025000000001102,,,LAE,,visa,
+5412000000001004,12,2023,,,,LCA,,mastercard,
 ```
+
+Refer to the [Loon Test Values](https://docs.pagos.ai/docs/loon-testing#loon-test-values) for a complete list of response codes.
 
