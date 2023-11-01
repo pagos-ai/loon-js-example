@@ -45,6 +45,7 @@ account_number | 15-16 digits
 expiry_year | YYYY
 expiry_month | MM
 sub_merchant_id | optional value, alphanumeric
+metadata | optional value, alphanumeric, max 36 characters
 
 ## Get Job Status
 
@@ -63,9 +64,9 @@ Use the job-id returned from submit-job
 ### Sample response file format
 
 ```csv
-account_number,expiry_month,expiry_year,new_account_number,new_expiry_month,new_expiry_year,response_code,error_code,network,sub_merchant_id
-4025000000001002,12,2023,4025000000001102,,,LAE,,visa,
-5412000000001004,12,2023,,,,LCA,,mastercard,
+account_number,expiry_month,expiry_year,new_account_number,new_expiry_month,new_expiry_year,response_code,error_code,network,sub_merchant_id,metadata
+4025000000001002,12,2023,4025000000001102,,,LAE,,visa,1,31a7bf30-8ea6-429e-9522-6b6099040530
+5412000000001004,12,2023,,,,LCA,,mastercard,2,51032475-bc83-46d8-8768-15e129f3c6e0
 ```
 
 Refer to the [Loon Test Values](https://docs.pagos.ai/docs/loon-testing#loon-test-values) for a complete list of response codes.
