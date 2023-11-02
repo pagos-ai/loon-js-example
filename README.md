@@ -45,7 +45,7 @@ account_number | 15-16 digits
 expiry_year | YYYY
 expiry_month | MM
 sub_merchant_id | optional value, alphanumeric
-metadata | optional value, alphanumeric, max 36 characters
+metadata | optional value, alphanumeric, max 50 characters
 
 ## Get Job Status
 
