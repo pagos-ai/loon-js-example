@@ -34,7 +34,7 @@ A jobId is returned, which can be used for status and download calls.
 
 The request file should be a csv with the header
 
-`network,account_number,expiry_year,expiry_month,sub_merchant_id`
+`network,account_number,expiry_year,expiry_month,sub_merchant_id,metadata`
 
 and at least one row of data with the following values
 
