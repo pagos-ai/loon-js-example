@@ -17,7 +17,7 @@ async function printJobStatus(config, jobId) {
 
     if(response.status == "200") {
         const responseJson = await response.json();
-        console.log(responseJson);
+        console.dir(responseJson, { depth: null });
     } else {
         console.log("job not found");
     }
