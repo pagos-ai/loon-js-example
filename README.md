@@ -53,6 +53,65 @@ metadata | optional value, alphanumeric, max 50 characters
 
     node job-status.js 42
 
+A status object is returned
+
+### Processing
+
+Your job is being processed
+
+```
+node job-status.js 42
+
+{
+  status: 'processing',
+  error: null,
+  networks: [
+    { network: 'visa', status: 'pending' },
+    { network: 'mastercard', status: 'pending' }
+  ]
+}
+```
+
+### Errors
+
+Your input file has errors
+
+```
+node job-status.js 42
+
+{
+  status: 'error',
+  error: {
+    code: 'validation_failed',
+    message: 'The file failed to validate. See Details for details.',
+    details: [
+      {
+        detail: 'AccountNumber',
+        additionalInfo: 'Row = 1, Value = 1234'
+      }, ...
+    ]
+  }
+}
+```
+
+### Processed
+
+Your file has been processed. You can proceed and download results.
+
+```
+node job-status.js 42
+
+{
+  status: 'processed',
+  error: null,
+  networks: [
+    { network: 'mastercard', status: 'processed' },
+    { network: 'visa', status: 'processed' }
+  ]
+}
+```
+
+
 ## Get Job Results
 
 When a job is in "processed" state, you can download results as a response file
