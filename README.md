@@ -44,8 +44,8 @@ network | visa,mastercard,discover,american express
 account_number | 15-16 digits
 expiry_year | YYYY
 expiry_month | MM
-sub_merchant_id | optional value, alphanumeric
-metadata | optional value, alphanumeric, max 50 characters
+sub_merchant_id | optional, max 12 characters for visa/discover/american express, exactly 15 characters for mastercard
+metadata | optional, max 50 characters
 
 ## Get Job Status
 
