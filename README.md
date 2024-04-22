@@ -2,9 +2,10 @@
 
 To submit account inquiries jobs, you need an ActionSuite account.
 
-* Actionsuite API keys ClientKey, PrivateKey
-* Pagos Loon public pgp key (used to encrypt content to Pagos)
-* Your private pgp key (used to decrypt results from Pagos)
+- Actionsuite API keys ClientKey, PrivateKey
+- Pagos Loon public pgp key (used to encrypt content to Pagos)
+- Your private pgp key and passphrase (used to decrypt results from Pagos)
+- RTAU requestKey, requestKeyId, responseKey and responseKeyId for using RTAU feature
 
 This sample client demonstrates how to submit a job using api keys and pgp encryption.
 
@@ -16,15 +17,14 @@ copy `.env.example` to `.env` and populate the keys with your credentials
 
 ## Environments
 
-Environment | API_HOST | Response cadence
-------|------|------
-sandbox | https://services.sandbox.pagosapi.com | Near real time (simulated responses)
-prod | https://services.prod.pagosapi.com | Overnight
-
+| Environment | API_HOST                              | Response cadence                     |
+| ----------- | ------------------------------------- | ------------------------------------ |
+| sandbox     | https://services.sandbox.pagosapi.com | Near real time (simulated responses) |
+| prod        | https://services.prod.pagosapi.com    | Overnight                            |
 
 ## Submit a job
 
-    node job-submit.js test_cards.csv
+    tsx src/job-submit.js src/data/test_cards.csv
 
 Encrypts a test card request file and uploads it to Pagos Loon. See [test_cards.csv](test_cards.csv) for an example.
 
@@ -38,20 +38,19 @@ The request file should be a csv with the header
 
 and at least one row of data with the following values
 
-field | values
-------|------
-network | visa,mastercard,discover,american express
-account_number | 15-16 digits
-expiry_year | YYYY
-expiry_month | MM
-sub_merchant_id | optional, max 12 characters for visa/discover/american express, exactly 15 characters for mastercard
-metadata | optional, max 50 characters
+| field                  | values                                    |
+| ---------------------- | ----------------------------------------- |
+| network                | visa,mastercard,discover,american express |
+| account_number         | 15-16 digits                              |
+| expiry_year            | YYYY                                      |
+| expiry_month           | MM                                        |
+| submerchant_account_id | optional value, alphanumeric              |
 
 ## Get Job Status
 
 (Use the job-id returned from submit-job)
 
-    node job-status.js 42
+    tsx src/job-status.ts 42
 
 A status object is returned
 
@@ -60,7 +59,7 @@ A status object is returned
 Your job is being processed
 
 ```
-node job-status.js 42
+tsx src/job-status.ts 42
 
 {
   status: 'processing',
@@ -77,7 +76,7 @@ node job-status.js 42
 Your input file has errors
 
 ```
-node job-status.js 42
+tsx src/job-status.ts 42
 
 {
   status: 'error',
@@ -99,7 +98,7 @@ node job-status.js 42
 Your file has been processed. You can proceed and download results.
 
 ```
-node job-status.js 42
+tsx src/job-status.ts 42
 
 {
   status: 'processed',
@@ -111,14 +110,24 @@ node job-status.js 42
 }
 ```
 
-
 ## Get Job Results
 
 When a job is in "processed" state, you can download results as a response file
 
 Use the job-id returned from submit-job
 
-    node job-download.js 42
+```
+tsx src/job-download.ts 42
+```
+
+## RTAU inquiry
+
+For using RTAU feature, you may find this file
+Edit `src/data/card.ts` to change card, expiration date and metadata
+
+    tsx src/rtau-inquiry.ts
+
+Execution of this script will return you original response and decryption of updated card
 
 ### Sample response file format
 
@@ -129,4 +138,3 @@ account_number,expiry_month,expiry_year,new_account_number,new_expiry_month,new_
 ```
 
 Refer to the [Loon Test Values](https://docs.pagos.ai/docs/loon-testing#loon-test-values) for a complete list of response codes.
-
