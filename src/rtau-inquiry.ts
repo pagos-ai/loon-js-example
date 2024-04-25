@@ -1,10 +1,10 @@
 import fetch from "node-fetch";
 import { v4 as uuidv4 } from "uuid";
-import { createHeaders } from "./lib/encryption/auth";
-import { decryptPayload, encryptPayload } from "./lib/encryption/jwt";
-import { loonConfig } from "./lib/config";
-import { LoonConfig } from "./lib/type/service";
-import { RtauPayload, RtauResponse } from "./lib/type/card";
+import { createHeaders } from "./utils/auth";
+import { decryptPayload, encryptPayload } from "./utils/encryption/jwt";
+import { loonConfig } from "./utils/config";
+import { LoonConfig } from "./utils/type/service";
+import { RtauPayload, RtauResponse } from "./utils/type/card";
 import { card } from "./data/card";
 
 /**

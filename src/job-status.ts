@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
-import { createHeaders } from "./lib/encryption/auth.js";
-import { loonConfig } from "./lib/config.js";
+import { createHeaders } from "./utils/auth.js";
+import { loonConfig } from "./utils/config.js";
 
 /**
  * Prints out the status of a given jobId

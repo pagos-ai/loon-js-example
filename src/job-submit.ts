@@ -1,8 +1,8 @@
 import fetch from "node-fetch";
 import { readFileSync } from "fs";
-import { createHeaders } from "./lib/encryption/auth.js";
-import { loonConfig } from "./lib/config.js";
-import { encryptPgp } from "./lib/encryption/pgp.js";
+import { createHeaders } from "./utils/auth.js";
+import { loonConfig } from "./utils/config.js";
+import { encryptPgp } from "./utils/encryption/pgp.js";
 
 /**
  * Encrypt and upload a card file

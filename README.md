@@ -13,7 +13,9 @@ This sample client demonstrates how to submit a job using api keys and pgp encry
 
     npm install
 
-copy `.env.example` to `.env` and populate the keys with your credentials
+for tsx (Typescript execution tool) usage install it globally with `npm install -G tsx` or add `npx` to `tsx` for local execution
+
+copy `.env.example` to `.env` and populate the keys with your credentials. if you don't have some of credentials for batch or RTAU, just leave original place holder string.
 
 ## Environments
 
@@ -38,13 +40,14 @@ The request file should be a csv with the header
 
 and at least one row of data with the following values
 
-| field                  | values                                    |
-| ---------------------- | ----------------------------------------- |
-| network                | visa,mastercard,discover,american express |
-| account_number         | 15-16 digits                              |
-| expiry_year            | YYYY                                      |
-| expiry_month           | MM                                        |
-| submerchant_account_id | optional value, alphanumeric              |
+| field                  | values                                                                                                             |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| network                | visa,mastercard,discover,american express                                                                          |
+| account_number         | 13-19 digits                                                                                                       |
+| expiry_year            | YYYY                                                                                                               |
+| expiry_month           | MM                                                                                                                 |
+| submerchant_account_id | optional, alphanumeric, max 12 characters for visa/discover/american express, exactly 15 characters for mastercard |
+| metadata               | optional, alphanumeric, max 50 characters                                                                          |
 
 ## Get Job Status
 
@@ -120,15 +123,6 @@ Use the job-id returned from submit-job
 tsx src/job-download.ts 42
 ```
 
-## RTAU inquiry
-
-For using RTAU feature, you may find this file
-Edit `src/data/card.ts` to change card, expiration date and metadata
-
-    tsx src/rtau-inquiry.ts
-
-Execution of this script will return you original response and decryption of updated card
-
 ### Sample response file format
 
 ```csv
@@ -138,3 +132,12 @@ account_number,expiry_month,expiry_year,new_account_number,new_expiry_month,new_
 ```
 
 Refer to the [Loon Test Values](https://docs.pagos.ai/docs/loon-testing#loon-test-values) for a complete list of response codes.
+
+## Real Time Account Updater (RTAU) inquiry
+
+For using RTAU feature, you may find this file
+Edit `src/data/card.ts` to change card, expiration date and metadata
+
+    tsx src/rtau-inquiry.ts
+
+Execution of this script will return you original response and decryption of updated card

@@ -1,4 +1,4 @@
-import { RtauCard } from "../lib/type/card";
+import { RtauCard } from "../utils/type/card";
 
 export const card: RtauCard = {
   accountNumber: "4327390068355737",

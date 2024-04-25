@@ -1,7 +1,7 @@
 import fetch from "node-fetch";
-import { createHeaders } from "./lib/encryption/auth.js";
-import { loonConfig } from "./lib/config.js";
-import { decryptPgp } from "./lib/encryption/pgp.js";
+import { createHeaders } from "./utils/auth.js";
+import { loonConfig } from "./utils/config.js";
+import { decryptPgp } from "./utils/encryption/pgp.js";
 
 /**
  * Download and decrypt the response file for this jobId
