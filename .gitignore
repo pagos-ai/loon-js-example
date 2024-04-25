@@ -1,3 +1,29 @@
+# Dependency directories
+node_modules/
+
+# Output directories
+dist/
+build/
+
+# Environment files
 .env
-node_modules
-*.pgp
+.env.local
+.env.*.local
+
+# IDE/Editor files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+*.log
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# TypeScript Files
+*.tsbuildinfo
