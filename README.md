@@ -28,7 +28,7 @@ copy `.env.example` to `.env` and populate the keys with your credentials. if yo
 
     tsx src/job-submit.js src/data/test_cards.csv
 
-Encrypts a test card request file and uploads it to Pagos Loon. See [test_cards.csv](test_cards.csv) for an example.
+Encrypts a test card request file and uploads it to Pagos Loon. See [test_cards.csv](src/data/test_cards.csv) for an example.
 
 A jobId is returned, which can be used for status and download calls.
 
