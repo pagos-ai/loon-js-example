@@ -42,7 +42,7 @@ and at least one row of data with the following values
 
 | field           | values                                                                                                                          |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| network         | visa,mastercard,discover,american express,amex_optblue                                                                          |
+| network         | visa,mastercard,discover,amex,amex_optblue                                                                                      |
 | account_number  | 13-19 digits                                                                                                                    |
 | expiry_year     | YYYY                                                                                                                            |
 | expiry_month    | MM                                                                                                                              |
