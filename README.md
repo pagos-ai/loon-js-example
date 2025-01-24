@@ -40,14 +40,14 @@ The request file should be a csv with the header
 
 and at least one row of data with the following values
 
-| field                   | values                                                                                                              |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| network                 | visa,mastercard,discover,amex,amex_optblue                                                                          |
-| account_number          | 13-19 digits                                                                                                        |
-| expiry_year             | YYYY                                                                                                                |
-| expiry_month            | MM                                                                                                                  |
-| sub_merchant_account_id | optional, alphanumeric, max 12 characters for visa/discover/amex/amex_optblue, exactly 15 characters for mastercard |
-| metadata                | optional, alphanumeric, max 50 characters                                                                           |
+| field           | values                                                                                                                          |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| network         | visa,mastercard,discover,amex,amex_optblue                                                                                      |
+| account_number  | 13-19 digits                                                                                                                    |
+| expiry_year     | YYYY                                                                                                                            |
+| expiry_month    | MM                                                                                                                              |
+| sub_merchant_id | optional, alphanumeric, max 12 characters for visa/discover/american express/amex_optblue, exactly 15 characters for mastercard |
+| metadata        | optional, alphanumeric, max 50 characters                                                                                       |
 
 ## Get Job Status
 
